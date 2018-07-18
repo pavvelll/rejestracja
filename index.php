@@ -1,3 +1,12 @@
+<?php session_start();
+
+	if(isset($_SESSION['log_ok']))
+	{
+		header('Location: user_site.php');
+		exit();
+	}
+
+ ?>
 <!DOCUMENT HTML>
 <html lang="pl">
 <head>
@@ -7,12 +16,20 @@
 </head>
 
 <body>
-	<form method= "post" action="login.php">
+	<form  action="login.php" method= "post">
 		Login: <br><input type="text" name="login"/><br>
-		Password: <br><input type="pass" name="password"/><br><br>
+		Password: <br><input type="password" name="password"/><br><br>
 		<input type="submit" value="zaloguj"/>
 		
 	</form>
+	
+<?php 
+	if(isset($_SESSION['wrong_login']))
+	{
+		echo $_SESSION['wrong_login'];
+		unset($_SESSION['wrong_login']);
+	}	
+?>
 
 </body>
 </html>
